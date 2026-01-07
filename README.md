@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lovely Gifts - Esha💝</title>
+  <style>
+
+/* Loading Screen */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: "Poppins", sans-serif;
+  color: #ff4d6d;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.logo {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+/* Spinner Circle */
+.spinner {
+  position: fixed;
+  width: 110px;
+  height: 110px;
+  border: 10px solid none;
+  border-top: 7px solid #ff4d6d;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 7;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body.loaded #loading-screen {
+  display: none;
+  position: fixed;
+}
+
+/* Main Body */
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Header */
+header {
+  background-color: #ff4d6d;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  position: fixed;    /* Fixed top */
+  top: 0;             /* Top 0 */
+  left: 0;
+  width: 100%;        /* Full width */
+  z-index: 1000;      /* On top of everything */
+}
+
+
+/* Responsive Menu Toggle */
+.left-panel {
+  transition: transform 0.3s ease;
+}
+.left-panel.hidden {
+  transform: translateX(-250px);
+
+}
+@media (max-width: 100vw) {
+  .left-panel {
+    position: fixed;
+    top: 0.10px;
+    height: 100%;
+    width: 0%;
+    z-index: 999;
+  }
+}
+
+
+
+/* Right Content Area */
+.right-content {
+padding-top: 70px;  /* Equal to header height */
+  flex: 1;
+  padding: 20px;
+  position: relative;
+
+}
+
+/* Layout: Left Menu + Right Content */
+.main-layout {
+  display: flex;
+  flex: 1;
+  color: black;
+  background-color: white;
+}
+
+/* Left Panel (Menu) */
+.left-panel {
+  width: 220px;
+  background-color: #fff0f3;
+  border-right: 1.5px solid #ffd6de;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-panel h3 {
+  color: #f905da;
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 10.5px;
+  font-size: 25px;
+  font: bold;
+}
+
+.left-panel ul {
+  position: fixed;
+  list-style: none;
+  font-size: 20px;
+  padding: 0;
+}
+
+.left-panel ul li {
+  margin: 25px 0;
+  
+}
+
+.left-panel ul li a {
+  text-decoration: none;
+  color: #f32671;
+  font-weight: 600;
+  display: grid;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.left-panel ul li a:hover,
+.left-panel ul li a.active {
+  background-color: #ff4d6d;
+  color: black;
+}
+
+/* Product Cards */
+.container {
+  background-color: transparent;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1.25fr));
+  gap: 28px;
+  padding: 10px 0;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.card:hover { transform: scale(1.05); }
+
+.card img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.info h3 {
+  font-size: 16px;
+  color: #333;
+  margin: 6px 0;
+}
+.info p {
+  color: #555;
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  background-color: #ff4d6d;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+.btn:hover {
+  background-color: black;
+  box-shadow: 0 0 1000px rgba(255,109,137,0.6);
+}
+
+/* Floating WhatsApp */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 150px;
+  right: 18px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  animation: float 2s infinite ease-in-out;
+}
+.floating-whatsapp img { width: 35px; height: 35px; }
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+
+
+/* Footer */
+  footer {
+  background-color: #ff4d6d;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  width: 100%;
+}
+/* Customer Reviews */
+.review-btn-box {
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.review-btn {
+  display: inline-block;
+  padding: 14px 0px;
+  width: 70%;
+  background: #ff4d6d;
+  color: white;
+  text-decoration: none;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.review-btn:hover {
+  background: #e63b5c;
+}
+
+#reviews {
+  background: #fff0f3;
+  padding: 25px;
+  width: 100%;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.review-card {
+  background: white;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.review-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  word-break: break-word;
+
+
+}
+
+.review-name {
+  margin-top: 8px;
+  font-size: 18px;
+  color: Black;
+  font-weight: bold;
+}
+
+.review-rating {
+  color: black;
+  font-weight: bold;
+  
+}
+  
+  .review-photo {
+  width: 100%;
+  max-width: 100%;   
+  height: auto;
+  display: block;
+  margin: 1px auto;
+  border-radius: 10px;
+  object-fit: cover;
+  color: #32a7f9;
+  background: ;
+  word-break: break-word;
+}
+
+
+  </style>
+</head>
+
+<body>
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <img src="https://iili.io/KmJrLIn.png" alt="Lovely Gifts Logo" class="logo">
+  <div class="spinner"></div>
+  <p>
+    <br><br><br><br><br><br><br><br>
+    
+  Lovely memories🥰...</p>
+</div>
+
+<header>
+  Lovely Gifts 💝 – Custom Frames, Memories & Gifts
+  
+  <span id="menu-toggle"
+  style="float:right;
+  margin-right:15px;
+  margin-top:-5px;
+  cursor:pointer;
+  font-size:30px;
+  color:black;">☰</span>
+</header> 
+
+
+<div class="main-layout">
+
+  <!-- LEFT SIDE MENU -->
+  <aside class="left-panel hidden" id="sideMenu">
+  
+    <h3>Lovely Gifts</h3>
+    
+    <ul>
+      <li><a href="#home" class="active">🏠 Home</a></li>
+      <li><a href="#categories">🖼️ Categories</a></li>
+      <li><a href="#profile">👤 Profile</a></li>
+      <li><a href="#payment">💳 Payment</a></li>
+      <li><a href="#contact">📞 Contact</a></li>
+      <li><a href="#reviews">⭐ Reviews</a></li>
+      
+    </ul>
+  </aside>
+
+  <!-- RIGHT SIDE CONTENT -->
+  <main class="right-content">
+
+    <!-- Home -->
+    <section id="home">
+      <h2 style="color:#ff4d6d;">🏠 Lovely Frame's</h2>
+      <div class="container">
+
+        <div class="card">
+          <img src="https://iili.io/KbyGgta.png" alt="Heart Frame-Lovely Gifts" />
+          
+          <br>
+          
+          <div class="info">
+            <h3>Heart Frame</h3>
+            <p>₹299</p>
+            <a class="btn" href="https://wa.me/916369405530?text=Hii✨🩷 I want this Heart Frame">Buy on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://iili.io/KbyTvX1.jpg" alt="Couple Frame-Lovely Gifts" />
+          
+          <div class="info">
+            <h3>Couple Frame</h3>
+            <p>₹299</p>
+            <a class="btn" href="https://wa.me/916369405530?text=Hii✨🩷 I want this Couple Frame">Buy on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://iili.io/KbyeBb2.png" alt="Birthday Frame-Lovely Gifts" />
+          <div class="info">
+            <h3>Birthday Frame</h3>
+            <p>₹289</p>
+            <a class="btn" href="https://wa.me/916369405530?text=Hii✨🩷 I want this Birthday Frame">Buy on WhatsApp</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="categories">
+      <h2>🛍️ Categories</h2>
+      <p>Frames | Gifts | Keychains | Mugs | Custom Orders</p>
+    </section>
+
+    <section id="profile">
+      <h2>👤 Your Profile</h2>
+      <p>Welcome, Mohammed Esha 💫<br>Thank you for designing Lovely Gifts with love ❤️</p>
+    </section>
+
+    <section id="payment">
+      <h2>💳 Payment Methods</h2>
+      <p>We accept COD, UPI, GPay, PhonePe, and Bank Transfer.<br>For custom orders, contact us on WhatsApp 💬</p>
+    </section>
+
+    <section id="contact">
+      <h2>📞 Contact Us</h2>
+      <p>For orders or queries, message us directly on WhatsApp 💬</p>
+    </section>
+    
+    
+<!-- Customer Reviews -->
+
+
+<section id="reviews">
+  <h2>💬 Customer Reviews</h2>
+
+
+<div class="review-btn-box">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0hsPjIeExs0bLi6hORYkhHsA218RGpVKuUiDOI98ogp3kJw/viewform?usp=header"
+  target="_blank"
+  class="review-btn">
+    
+⭐⭐⭐⭐⭐ 
+  <br>Add Your Review
+  </a>
+</div> 
+
+  <h2>Customer Reviews</h2>
+  <div id="reviews-container"></div>
+  <div id="reviewList"></div>
+  
+  
+    </p> 
+    
+</section>
+
+  </main>
+  
+
+</div>
+
+
+    <footer>© 2025 Lovely Gifts | Designed by Mohammed Esha ❤️💫</footer>
+    
+<!-- Floating WhatsApp -->
+<a class="floating-whatsapp" href="https://wa.me/916369405530?text=Hello💖 Lovely Gifts team!">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat">
+</a>
+
+
+<script>
+window.onload = function() {
+  const loadingScreen = document.getElementById("loading-screen");
+  loadingScreen.style.transition = "opacity 1s ease";
+  loadingScreen.style.opacity = "0";
+  setTimeout(() => {
+    loadingScreen.style.display = "none";
+    document.body.classList.add("loaded");
+  }, 700);
+
+  const sideMenu = document.getElementById("sideMenu");
+  const menuToggle = document.getElementById("menu-toggle");
+  const links = document.querySelectorAll(".left-panel a");
+  const sections = document.querySelectorAll("main section");
+
+  menuToggle.addEventListener("click", () => {
+    sideMenu.classList.toggle("hidden");
+  });
+
+  links.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      links.forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
+
+      const target = document.querySelector(link.getAttribute("href"));
+      sections.forEach(sec => sec.style.display = "none");
+      target.style.display = "block";
+
+      // hide menu on click (mobile)
+      sideMenu.classList.add("hidden");
+    });
+  });
+
+  // Default: show home only
+  sections.forEach((sec, i) => {
+    sec.style.display = i === 0 ? "block" : "none";
+  });
+};
+
+const reviewsURL ="https://script.google.com/macros/s/AKfycbwcORh6oCRcO5QmYz7kAoRH95Fs8_GJuga349_sgKHz_uYqar4B9pExKZkjt9MB-ZbT/exec";
+
+fetch(reviewsURL)
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("reviews-container");
+    container.innerHTML = "";
+
+    data.reverse().forEach(r => {
+      const stars = "⭐".repeat(Number(r.review)); // ⭐ AUTO STAR
+
+      const div = document.createElement("div");
+      div.className = "review-card";
+
+      div.innerHTML = `
+        
+        <p class="review-name"> 
+        ${r.name}</p>
+        <div class="review-stars">${stars}</div>
+
+        <p class="review-text">
+        ${r.review}</p>
+
+
+        
+              <p class="review-rating">  
+      ${r.rating}  
+    </p>  
+      
+          
+            ${r.photo ? `
+  <a href="${r.photo}" target="_blank" class="review-photo-link">
+    📷 View Uploaded Photo
+  </a>
+` : ""}
+  `;  
+
+      container.appendChild(div);
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+</script>
+</body>
+  </html>
+   
