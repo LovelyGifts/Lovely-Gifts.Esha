@@ -806,14 +806,23 @@ href="https://wa.me/919344305530?text=Hii✨🩷 I want this ${product.name}">
 Buy on WhatsApp
 </a>
 
-<a class="btn"
+<button onclick="addToCart(
 '${product.name}',
 ${product.price},
 '${product.photo}'
->
-
-🛒 Add to Cart</a>
-
+)"
+style="display: inline-block;
+  background-color: #ff4d6d;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;;
+  box-shadow: 0 0 1000px rgba(255,109,137,0.6);
+">
+🛒 Add to Cart
+</button>
 </div>
 </div>
 `;
